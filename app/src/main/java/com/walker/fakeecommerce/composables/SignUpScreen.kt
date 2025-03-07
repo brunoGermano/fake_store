@@ -59,7 +59,7 @@ fun SignUpScreen(
 
     val pickMedia = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         if (uri != null) {
-            signupViewModel.onEvent(SignUpUIEvent.ImageChanged(uri))
+            signupViewModel.onEvent(SignUpUIEvent.ImageChanged(uri)) // neste momento teremos a imagem do usuário que ele seleciona na galeria dele
         } else {
             Log.d("PickVisualMedia", "No media selected")
         }

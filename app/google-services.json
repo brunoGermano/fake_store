@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "415555477520",
+    "project_id": "fakestore-11900",
+    "storage_bucket": "fakestore-11900.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415555477520:android:a6db32eda680e6f40aea95",
+        "android_client_info": {
+          "package_name": "com.walker.fakeecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhUtjEBz3Ey55sk2HKa9nghLwg4kTFWJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
