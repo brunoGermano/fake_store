@@ -112,7 +112,7 @@ class LoginViewModel @Inject constructor(
         val email = loginUIState.value.email
         val password = loginUIState.value.password
 
-        val result = userRepository.postLogin( email, password)
+        val result = userRepository.postLogin( email, password )
 
         if(result.isSuccessful){
             result.body()?.let{

@@ -9,7 +9,7 @@ import retrofit2.http.POST
 
 interface ApiService {
     /* Criando a nossa interface para os endpoints */
-    @POST
+    @POST("users")
     suspend fun postUser(
         @Body user: User
     ): Response<User>

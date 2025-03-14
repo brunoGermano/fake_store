@@ -27,6 +27,9 @@ import com.walker.fakeecommerce.navigation.Screen
 import com.walker.fakeecommerce.ui.theme.FakeEcommerceTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+/* ariana.haltiner.iammatteo  */
+
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
