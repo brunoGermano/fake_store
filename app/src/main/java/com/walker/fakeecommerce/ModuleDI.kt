@@ -1,5 +1,6 @@
 package com.walker.fakeecommerce
 
+import android.content.Context
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.walker.fakeecommerce.datasources.UserDataSource
@@ -7,6 +8,7 @@ import com.walker.fakeecommerce.network.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,6 +19,16 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class ModuleDI {
+
+    /* Provendo instância do sharedPreferences pra toda a nossa aplicação */
+    @Provides
+    @Singleton
+    fun provideSharedPreference(
+        /* Precisamos de um contexto aqui dentro, para isso usamos a injeção de um contexto dentro do DaggerHilt */
+        @ApplicationContext context: Context
+    ) = context.getSharedPreferences( "fake_ecommerce_manager", Context.MODE_PRIVATE ) // pasando o nome do arquivo que queremos criar e em modo privado, isso injetará automaticamente na classe "SessionManager"
+
+
     /* Provendo uma instância do firebase para o nosso app*/
     @Provides
     @Singleton
@@ -25,7 +37,7 @@ class ModuleDI {
 
 
     @Provides
-    fun providesBaseUrl() = "https://api.escuelajs.co/api/v1"
+    fun providesBaseUrl() = "https://api.escuelajs.co/api/v1/"
 
     @Provides
     fun provideRetrofit(
