@@ -52,6 +52,12 @@ class LoginViewModel @Inject constructor(
             }
             loginUIState.value.loadingAlreadyLogged = false
         }
+
+        /* linha adicionada pelo allan para corrigir o problema do primeiro login,
+           onde ainda nao temos o token de acesso salvo pelo session manager, parece
+           que a Anny não tinha previsto esta situação. */
+        loginUIState.value.loadingAlreadyLogged = false
+
     }
 
     fun onEvent(event: LoginUIEvent) {
