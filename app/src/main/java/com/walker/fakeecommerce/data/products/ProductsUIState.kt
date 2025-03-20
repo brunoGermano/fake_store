@@ -4,7 +4,7 @@ import com.walker.fakeecommerce.model.Product
 
 data class ProductsUIState(
     var selectedProduct: Product? = null,
-    val allProducts: List<Product> = listOf(
+    /*val allProducts: List<Product> = listOf(
         Product(
             1,
             "https://m.media-amazon.com/images/I/518bzP8VW1L.__AC_SY445_SX342_QL70_ML2_.jpg",
@@ -69,5 +69,12 @@ data class ProductsUIState(
             "$29.99",
             "Category B"
         ),
-    )
+    )*/
+
+    val allProducts: List<Product> = listOf(), // deixamos a lista vazia aqui pois iremos adquirir os produtos do backend, da API.
+
+    /* Criando os outros dois estados que iremos usar para saber se está carregando e se deu erro*/
+    var productsAreLoading: Boolean = false,
+    var productsLoadingError: Boolean = false
+
 )
