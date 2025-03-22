@@ -110,7 +110,7 @@ fun ProductsScreen( navController: NavHostController, viewModel: ProductsViewMod
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
-                     Text(text = stringResource(id = R.string.error_loading))
+                    Text(text = stringResource(id = R.string.error_loading))
                     ButtonComponent( // botão para recaregar produtos
                         value = stringResource(id = R.string.retry),
                         onButtonClicked = {

@@ -17,4 +17,7 @@ class UserDataSource @Inject constructor(
     suspend fun postLogin( email: String, password: String ) =
         apiService.postLogin( LoginUser( email, password ))
 
+    /* Aula 3.5, consumindo o getProfile do API service. */
+    suspend fun getProfile() =
+        apiService.getProfile()
 }

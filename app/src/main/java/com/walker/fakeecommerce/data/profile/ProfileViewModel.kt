@@ -4,6 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.walker.fakeecommerce.model.Profile
+import com.walker.fakeecommerce.repositories.UserRepository
 import com.walker.fakeecommerce.utils.SessionManager
 import com.walker.fakeecommerce.utils.Validator
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val sessionManager: SessionManager
+    private val sessionManager: SessionManager,
+    private val userRepository: UserRepository
 ): ViewModel() {
 
     private val TAG = ProfileViewModel::class.simpleName
@@ -42,14 +44,28 @@ class ProfileViewModel @Inject constructor(
                 )
 
                 viewModelScope.launch {
-                    delay(500)
+                    //delay(500) // Aula 3.5, Usando o "getProfile" que foi consumido da API
 
-                    profileUIState.value = profileUIState.value.copy(
-                        profile = profile,
-                        profileError =  false,
-                        nameField = profile.name,
-                        profileIsLoading = false
-                    )
+                    val result = userRepository.getProfile()
+
+                    if (result.isSuccessful){
+                        val profileResult = result.body()
+                        profileUIState.value = profileUIState.value.copy(
+                            profile = profileResult,
+                            profileError =  false,
+                            nameField = profileResult?.name ?: "-", // Operador de Elvis aqui "?:"
+                            profileIsLoading = false
+                        )
+                    }else{ // caso não retorne o perfil do usuário executa o else
+                        profileUIState.value = profileUIState.value.copy(
+                            profile = null,
+                            profileError =  true, // colocar o erro como "true"
+                            profileIsLoading = false
+                        )
+                    }
+
+
+
                 }
             }
 

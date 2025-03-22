@@ -81,8 +81,11 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.44"
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
-    // dependências do retrofit, usado para acessar APIs
+    // dependências do retrofit, usado para acessar URLs de APIs
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    //implementation 'com.squareup.okhttp3:logging-interceptor:4.5.6' // Aula 3.5, para criar o interceptor dentro do cliente retrofit
+    implementation("com.squareup.okhttp3:okhttp:4.11.0") // Use a versão mais recente do OkHttp
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0") // Use a mesma versão do OkHttp
 
     // dependência do Gson Parser
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'

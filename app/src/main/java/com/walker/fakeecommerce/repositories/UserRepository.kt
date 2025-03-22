@@ -14,5 +14,7 @@ class UserRepository @Inject constructor(
     suspend fun postLogin( email: String, password: String ) =
         userDataSource.postLogin( email, password )
 
-
+    /* Aula 3.5, consumindo o getProfile do API service. */
+    suspend fun getProfile() =
+        userDataSource.getProfile()
 }

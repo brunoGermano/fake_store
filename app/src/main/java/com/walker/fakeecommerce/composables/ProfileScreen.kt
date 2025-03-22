@@ -48,7 +48,7 @@ import com.walker.fakeecommerce.navigation.Screen
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen(navController: NavHostController, profileViewModel: ProfileViewModel = hiltViewModel()) {
-    val profile = profileViewModel.profileUIState.value.profile
+    val profile = profileViewModel.profileUIState.value.profile // recebe o resultado vindo da API que será consumido pelo "ProfileViewModel"
     val profileIsLoading = profileViewModel.profileUIState.value.profileIsLoading
     val profileError = profileViewModel.profileUIState.value.profileError
     val logoutUser = profileViewModel.logoutUser.value

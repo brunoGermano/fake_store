@@ -3,6 +3,7 @@ package com.walker.fakeecommerce.network
 import com.walker.fakeecommerce.model.AccessToken
 import com.walker.fakeecommerce.model.LoginUser
 import com.walker.fakeecommerce.model.Product
+import com.walker.fakeecommerce.model.Profile
 import com.walker.fakeecommerce.model.User
 import retrofit2.Response
 import retrofit2.http.Body
@@ -26,6 +27,14 @@ interface ApiService {
        começando do primeiro que é o da posição zero. */
     @GET("products?offset=0&limit=10")
     suspend fun getProducts(): Response<List<Product>> // End point que trará como resposta uma lista de produtos
+
+
+    /*Aula 3.5
+      Adicionando o endpoint para adquirir o profile do usuário. */
+    @GET("auth/profile")
+    suspend fun getProfile(): Response<Profile> // End point que trará como resposta uma lista de produtos
+
+
 
     /* Criando a nossa interface para os endpoints */
     @POST("users")
