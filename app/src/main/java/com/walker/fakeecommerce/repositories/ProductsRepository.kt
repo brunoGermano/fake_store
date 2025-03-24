@@ -6,5 +6,5 @@ import javax.inject.Inject
 class ProductsRepository @Inject constructor(
     private val productsDataSource: ProductsDataSource
 ) {
-    suspend fun getProducts() = productsDataSource.getProducts()
+    suspend fun getProducts(offset: Int, limit: Int) = productsDataSource.getProducts(offset, limit)
 }

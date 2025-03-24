@@ -12,6 +12,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     /* Criando a nossa interface para os endpoints */
@@ -29,8 +30,16 @@ interface ApiService {
        não consegue lidar com tantos itens na lista sem comprometer a performance dele. Colocamos o
        parâmetro "?offset=0&limit=10" na "url" a ser gerada pelo "Kapt", isso trará apenas 10 itens
        começando do primeiro que é o da posição zero. */
-    @GET("products?offset=0&limit=10")
-    suspend fun getProducts(): Response<List<Product>> // End point que trará como resposta uma lista de produtos
+
+    //@GET("products?offset=0&limit=10")
+    //suspend fun getProducts(): Response<List<Product>> // End point que trará como resposta uma lista de produtos
+
+    /* Aula 3.7, paginação, copiei as linhas acima para implementar a paginação dos dados. */
+    @GET("products")
+    suspend fun getProducts(
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
+    ): Response<List<Product>> // End point que trará como resposta uma lista de produtos
 
 
     /*Aula 3.5
