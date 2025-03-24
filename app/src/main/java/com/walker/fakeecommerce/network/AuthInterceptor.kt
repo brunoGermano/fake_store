@@ -1,5 +1,6 @@
 package com.walker.fakeecommerce.network
 
+import android.util.Log
 import com.walker.fakeecommerce.utils.SessionManager
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -21,6 +22,7 @@ class AuthInterceptor constructor(
 
         sessionManager.readToken()?.let{
             requestBuilder.addHeader("Authorization", "Bearer $it")
+            Log.d("Token", "o valor do token é: $it")
         }
 
         return chain.proceed( requestBuilder.build() ) /* retornamos a cadeia da request ao normal para que o retrofit possa dar continuidade e efetuar a requisição para a API. */

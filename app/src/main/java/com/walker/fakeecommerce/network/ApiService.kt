@@ -7,10 +7,14 @@ import com.walker.fakeecommerce.model.Profile
 import com.walker.fakeecommerce.model.User
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface ApiService {
+    /* Criando a nossa interface para os endpoints */
 
     /* TODAS AS FUNÇÕES AQUI DEVEM SER SUSPENSAS, já que estão consumindo de uma API service, ou seja,
        um serviço da internet. Assim sendo, precisamos esperar pelo retorno da internet, logo, executamos
@@ -31,12 +35,32 @@ interface ApiService {
 
     /*Aula 3.5
       Adicionando o endpoint para adquirir o profile do usuário. */
-    @GET("auth/profile")
+    @GET("auth/profile") /* esse endpoint precisa receber o token do usuário logado para devolver os dados dele. */
     suspend fun getProfile(): Response<Profile> // End point que trará como resposta uma lista de produtos
 
 
 
-    /* Criando a nossa interface para os endpoints */
+    /* Aula 3.6, Criando o novo endpoint para edição do perfil com caminho dinâmico.
+       O verbo HTTP "PUT" é usado para editar algo na API. */
+    /* O valor de id será dinâmico, isso me dará o id do profile que eu estiver logado no momento
+       para enviar para a API e alterar o perfil do usuário logado em questão. */
+    @PUT("users/{id}")
+    suspend fun updateProfile(
+        @Path("id") id: String,
+        @Body profile: Profile
+    ): Response<Profile>  /* Como resposta da API temos o perfil modificado pelo usuário, para ver ela use o "appInspection" aba response com o json retornado. */
+
+
+    /* Aula 3.6, Criando o novo endpoint para deleção do perfil com caminho dinâmico. */
+    @DELETE("users/{id}")
+    suspend fun deleteProfile(
+        @Path("id") id: String
+    ): Response<Boolean> /* O retorno da API depois de executar a deleção do perfil é "true" ou "false", por isso
+    usa-se o Boolean no generics da classe de retorno "Response" pois será o tipo que ela retornará. */
+
+
+
+    /* Endpoint para criar um usuário. */
     @POST("users")
     suspend fun postUser(
         @Body user: User
@@ -46,4 +70,5 @@ interface ApiService {
     suspend fun postLogin(
         @Body loginUser: LoginUser
     ): Response<AccessToken>
+
 }
